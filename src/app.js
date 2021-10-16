@@ -1,6 +1,7 @@
 function formatDate(timestamp) {
   // Calculate the time and date
 
+  //date
   let date = new Date(timestamp);
   let months = [
     "January",
@@ -27,22 +28,31 @@ function formatDate(timestamp) {
     "Saturday",
   ];
   let dayNumber = date.getDate();
+
+  //time
   let day = days[date.getDay()];
   let hours = date.getHours();
   if (hours < 10) {
     hours = `0${hours}`;
   }
+  let options = {
+    hour: "numeric",
+    minute: "numeric",
+    hour12: true,
+  };
+  let time = date.toLocaleString("en-US", options);
+
   let minutes = date.getMinutes();
   if (minutes < 10) {
     minutes = `0${minutes}`;
   }
 
-  return `${day}, ${month} ${dayNumber} | ${hours}:${minutes}`;
+  return `${day}, ${month} ${dayNumber} | ${time}`;
 }
 
 function displayTemperature(response) {
-  console.log(response.data);
   //it's 'response' b/c the app gets a response from the API.
+
   let temperatureElement = document.querySelector("#temperature");
   temperatureElement.innerHTML = Math.round(response.data.main.temp);
 
@@ -70,9 +80,17 @@ function displayTemperature(response) {
   let dateElement = document.querySelector("#date");
   dateElement.innerHTML = formatDate(response.data.dt * 1000);
   //The '*1000' converts the milliseconds (from OpenWeatherMap) to actual Date and Time
+
+  let iconElement = document.querySelector("#icon");
+  iconElement.setAttribute(
+    "src",
+    `media/weather icons/${response.data.weather[0].icon}.svg`
+  );
+  iconElement.setAttribute("alt", response.data.weather[0].description);
 }
 
 let apiKey = "85bbd3d16a2dfe0ecf253c7ae1e8fe03";
-let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=New York&appid=${apiKey}&units=imperial`;
+let city = "Washington";
+let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`;
 
 axios.get(apiUrl).then(displayTemperature);
