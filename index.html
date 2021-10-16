@@ -10,25 +10,43 @@
       integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
       crossorigin="anonymous"
     />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <link rel="stylesheet" href="src/style.css" />
   </head>
   <body>
     <div class="container">
       <div class="weather-app">
-        <h1>Washington, DC, USA</h1>
-        <ul>
-          <li>Monday, October 12 | 20:43</li>
-          <li>Cloudy</li>
-        </ul>
+        <div class="overview">
+          <h1 id="city"></h1>
+          <ul>
+            <li>Monday, October 12 | 20:43</li>
+            <li id="description"></li>
+          </ul>
+        </div>
         <div class="row">
-          <div class="col-6"><img src="" alt="clear" /> 64˚F | ˚C</div>
-          <div class="col-6">
+          <div class="col-7">
+            <div class="d-flex current-weather-icon">
+              <img
+                src="media/current weather stand in.png"
+                alt="Sunny"
+                class="float-left"
+              />
+              <div class="float-left">
+                <strong id="temperature"></strong
+                ><small> <a href="#">˚F</a> | <a href="#">˚C</a> </small>
+              </div>
+            </div>
+          </div>
+          <div class="col-5">
             <ul>
-              <li>High: 70˚F | Low: 62˚F</li>
-              <li>Feels like: 65˚F</li>
-              <li>Precipitation: 20%</li>
-              <li>Humidity: 5%</li>
-              <li>Wind: 2 MPH</li>
+              <li>
+                High: <span id="today-high-temp"></span>˚F | Low:
+                <span id="today-low-temp7"></span>˚F
+              </li>
+              <li>Feels like: <span id="feels-like"></span>˚F</li>
+              <!-- <li>Precipitation: 20%</li> *Precipitation doesn't appear unless it's raining-->
+              <li>Humidity: <span id="humidity"></span>%</li>
+              <li>Wind: <span id="wind"></span> MPH</li>
             </ul>
           </div>
         </div>

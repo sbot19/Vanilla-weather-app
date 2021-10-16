@@ -7,6 +7,7 @@ h1 {
   display: block;
   font-size: 36px;
   line-height: 28px;
+  margin-bottom: 15px;
   color: white;
 }
 ul {
@@ -20,16 +21,19 @@ li {
   font-size: 16px;
   font-weight: 100px;
   line-height: 25px;
+  text-transform: capitalize;
 }
 .weather-app {
   max-width: 600px;
-  margin: 20px auto;
+  margin: 20px 20px;
   padding: 0;
+}
+.overview {
+  margin-bottom: 20px;
 }
 
 .container {
   color: rgb(233, 232, 232);
-  background-color: rgba(0, 0, 0, 0.192);
   display: block;
   padding: 50px 20px;
   margin: 50px auto 5px;
@@ -37,6 +41,26 @@ li {
   border: 10px solid rgb(255, 255, 255);
   border-radius: 90px;
 }
+.current-weather-icon img {
+  margin-right: 20px;
+  height: 100px;
+  width: 100px;
+}
+
+.current-weather-icon strong {
+  font-size: 100px;
+  line-height: 64px;
+  /* This changes the appearance of the large current temperature. */
+}
+
+.current-weather-icon small {
+  position: relative;
+  font-size: 16px;
+  top: -58px;
+  /* This changes the appearance of ˚F and ˚C. */
+  /* The vertical position of F/C can be changed with 'top'. */
+}
+
 #forecast {
   padding-top: 20px;
   padding-right: 60px;
