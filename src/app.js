@@ -53,8 +53,10 @@ function formatDate(timestamp) {
 function displayTemperature(response) {
   //it's 'response' b/c the app gets a response from the API.
 
+  fahrenheitTemperature = response.data.main.temp;
+
   let temperatureElement = document.querySelector("#temperature");
-  temperatureElement.innerHTML = Math.round(response.data.main.temp);
+  temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
 
   let cityElement = document.querySelector("#city");
   cityElement.innerHTML = response.data.name;
@@ -89,6 +91,9 @@ function displayTemperature(response) {
   iconElement.setAttribute("alt", response.data.weather[0].description);
 }
 
+// Search Bar
+//
+
 function search(city) {
   let apiKey = "85bbd3d16a2dfe0ecf253c7ae1e8fe03";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`;
@@ -101,7 +106,55 @@ function handleSubmit(event) {
   search(cityInputElement.value);
 }
 
-search("Washington"); //Default city when page loads
-
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit);
+
+//Current Location
+//
+function searchLocation(position) {
+  //requires latitude and longitude of user's location
+  let apiKey = "85bbd3d16a2dfe0ecf253c7ae1e8fe03";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKey}&units=imperial`;
+  axios.get(apiUrl).then(displayTemperature);
+}
+
+function getCurrentLocation(event) {
+  event.preventDefault();
+  navigator.geolocation.getCurrentPosition(searchLocation);
+}
+
+let currentLocation = document.querySelector(".current-button");
+currentLocation.addEventListener("click", getCurrentLocation);
+
+//Current temperature conversion
+//
+//Convert to Celsius
+function showCelsiusTemp(event) {
+  event.preventDefault();
+  let temperatureElement = document.querySelector("#temperature");
+  //remove the active class from the fahrenheit link
+  fahrenheitLink.classList.remove("active");
+  celsiusLink.classList.add("active");
+  let celsiusTemperature = (fahrenheitTemperature - 32) * (5 / 9);
+  temperatureElement.innerHTML = Math.round(celsiusTemperature);
+}
+
+//Convert to Fahrenheit
+function showFahrenheitTemp(event) {
+  event.preventDefault();
+  let temperatureElement = document.querySelector("#temperature");
+  //remove the active class from the celsius link
+  celsiusLink.classList.remove("active");
+  fahrenheitLink.classList.add("active");
+  temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
+}
+
+let fahrenheitTemperature = null; // "fah...ture" is a global variable.
+
+let celsiusLink = document.querySelector("#celsius-link");
+celsiusLink.addEventListener("click", showCelsiusTemp);
+
+let fahrenheitLink = document.querySelector("#fahrenheit-link");
+fahrenheitLink.addEventListener("click", showFahrenheitTemp);
+
+search("Washington"); //Default city when page loads

@@ -28,7 +28,15 @@
               />
             </div>
             <div class="col-3">
-              <input type="submit" value="search" class="button" />
+              <input type="submit" value="search" class="search-button" />
+              <button class="current-button">
+                <img
+                  src="media/gps1.svg"
+                  alt="current location"
+                  class="filter-white"
+                />
+                <!-- The GPS image doesn't show up -->
+              </button>
             </div>
           </div>
         </form>
@@ -45,7 +53,10 @@
               <img src="" alt="" class="float-left filter-white" id="icon" />
               <div class="float-left">
                 <strong id="temperature"></strong
-                ><small> <a href="#">˚F</a> | <a href="#">˚C</a> </small>
+                ><small>
+                  <a href="#" id="fahrenheit-link" class="active">˚F</a> |
+                  <a href="#" id="celsius-link">˚C</a>
+                </small>
               </div>
             </div>
           </div>
