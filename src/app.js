@@ -1,6 +1,5 @@
+// Display date and time
 function formatDate(timestamp) {
-  // Calculate the time and date
-
   //date
   let date = new Date(timestamp);
   let months = [
@@ -50,6 +49,7 @@ function formatDate(timestamp) {
   return `${day}, ${month} ${dayNumber} | ${time}`;
 }
 
+//Display weather conditions
 function displayTemperature(response) {
   //it's 'response' b/c the app gets a response from the API.
 
@@ -96,13 +96,11 @@ function displayTemperature(response) {
 }
 
 // Search Bar
-//
 function search(city) {
   let apiKey = "85bbd3d16a2dfe0ecf253c7ae1e8fe03";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`;
   axios.get(apiUrl).then(displayTemperature);
 }
-
 function handleSubmit(event) {
   event.preventDefault(); //prevents page from re-loading
   let cityInputElement = document.querySelector("#city-input");
@@ -113,23 +111,20 @@ let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit);
 
 //Current Location
-//
 function searchLocation(position) {
   //requires latitude and longitude of user's location
   let apiKey = "85bbd3d16a2dfe0ecf253c7ae1e8fe03";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKey}&units=imperial`;
   axios.get(apiUrl).then(displayTemperature);
 }
-
 function getCurrentLocation(event) {
   event.preventDefault();
   navigator.geolocation.getCurrentPosition(searchLocation);
 }
-
 let currentLocation = document.querySelector(".current-button");
 currentLocation.addEventListener("click", getCurrentLocation);
 
-//Current temperature conversion
+//Conversion of current temperature
 //
 //Convert to Celsius
 function showCelsiusTemp(event) {
@@ -140,6 +135,19 @@ function showCelsiusTemp(event) {
   celsiusLink.classList.add("active");
   let celsiusTemperature = (fahrenheitTemperature - 32) * (5 / 9);
   temperatureElement.innerHTML = Math.round(celsiusTemperature);
+
+  //need to convert to metric units; wrong values
+  //let highTemp = document.querySelector("#today-high-temp");
+  //highTemp.innerHTML = Math.round(celsiusTemperature);
+
+  //let lowTemp = document.querySelector("#today-low-temp");
+  //lowTemp.innerHTML = Math.round(celsiusTemperature);
+
+  //let feelsLike = document.querySelector("#feels-like");
+  //feelsLike.innerHTML = Math.round(celsiusTemperature);
+
+  //let wind = document.querySelector("#wind");
+  //wind.innerHTML = Math.round(celsiusTemperature * 3.6);
 }
 
 //Convert to Fahrenheit
@@ -150,6 +158,19 @@ function showFahrenheitTemp(event) {
   celsiusLink.classList.remove("active");
   fahrenheitLink.classList.add("active");
   temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
+
+  //Original units are imperial; wrong values
+  //let highTemp = document.querySelector("#today-high-temp");
+  //highTemp.innerHTML = Math.round(fahrenheitTemperature);
+
+  //let lowTemp = document.querySelector("#today-low-temp");
+  //lowTemp.innerHTML = Math.round(fahrenheitTemperature);
+
+  //let feelsLike = document.querySelector("#feels-like");
+  //feelsLike.innerHTML = Math.round(fahrenheitTemperature);
+
+  //let wind = document.querySelector("#wind");
+  //wind.innerHTML = Math.round(fahrenheitTemperature);
 }
 
 let fahrenheitTemperature = null; // "fah...ture" is a global variable.
@@ -160,4 +181,34 @@ celsiusLink.addEventListener("click", showCelsiusTemp);
 let fahrenheitLink = document.querySelector("#fahrenheit-link");
 fahrenheitLink.addEventListener("click", showFahrenheitTemp);
 
+//Forecast
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast");
+  let forecastHTML = `<div class="row">`;
+  let days = ["Mon", "Tue", "Wed", "Thr", "Fri"];
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `
+          <div class="col">
+            <div class="text-center forecast-day">
+              <h5 class="dayOfWeek"><strong>${day}</strong></h5>
+              <h6 class="forcast-day-number">Date</h6>
+              <img src="" alt="" width="36" />
+              <div class="forecast-temperatures">
+                <h6 class="forecast-high-temp">day°F</h6>
+                <p class="forecast-low-temp">night°F</p>
+              </div>
+            </div>
+          </div>
+  `;
+  });
+
+  forecastHTML = forecastHTML + `</div>`;
+
+  forecastElement.innerHTML = forecastHTML;
+}
+
 search("Washington"); //Default city when page loads
+
+displayForecast();

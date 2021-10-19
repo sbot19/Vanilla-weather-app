@@ -3,7 +3,6 @@ body {
   height: 100%;
   position: relative;
   background-size: cover;
-
   background-attachment: fixed;
   color: white;
 }
@@ -40,7 +39,8 @@ li:first-letter {
 }
 
 .container {
-  color: rgb(204, 202, 202);
+  color: rgb(223, 217, 217);
+  background: rgba(0, 0, 0, 0.178);
   display: block;
   padding: 40px 50px 50px;
   margin: 50px auto 7px;
@@ -53,6 +53,11 @@ li:first-letter {
   border: 4px solid white;
   border-radius: 90px;
   color: white;
+}
+
+.form-control::placeholder {
+  color: rgb(223, 217, 217);
+  opacity: 1;
 }
 
 .search-button,
@@ -79,6 +84,7 @@ li:first-letter {
 .current-weather-icon strong {
   position: relative;
   top: 50px;
+  color: white;
   font-size: 100px;
   line-height: 64px;
   /* This changes the appearance of the large current temperature (number). */
@@ -112,14 +118,37 @@ a {
   top: 40px;
 }
 
-#forecast {
+.weather-forecast {
   padding: 25px 0px 15px;
-
+}
+.forecast-day {
   border: 2px solid white;
   border-radius: 45px;
+  padding: 20px 5px 5px;
+  color: white;
+}
+
+.forecast-high-temp {
+  color: rgb(250, 206, 189);
+  font-weight: bolder;
+}
+
+.forecast-low-temp {
+  color: rgb(174, 223, 255);
+  font-weight: lighter;
+  font-size: small;
+}
+
+.openSource {
+  text-align: center;
+  display: block;
+  color: rgb(202, 255, 189);
 }
 
 #openSource {
-  text-align: center;
-  display: block;
+  color: rgb(202, 255, 189);
+}
+
+#openSource:hover {
+  color: rgb(73, 238, 216);
 }
