@@ -89,11 +89,14 @@ function displayTemperature(response) {
     `media/weather icons/${response.data.weather[0].icon}.svg`
   );
   iconElement.setAttribute("alt", response.data.weather[0].description);
+
+  //Animated background
+  let animatedBackground = document.querySelector("body");
+  animatedBackground.style.backgroundImage = `url(media/backgrounds/${response.data.weather[0].icon}.gif)`;
 }
 
 // Search Bar
 //
-
 function search(city) {
   let apiKey = "85bbd3d16a2dfe0ecf253c7ae1e8fe03";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`;

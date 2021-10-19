@@ -1,5 +1,10 @@
+html,
 body {
-  background-color: rgb(3, 3, 107);
+  height: 100%;
+  position: relative;
+  background-size: cover;
+
+  background-attachment: fixed;
   color: white;
 }
 
@@ -35,10 +40,10 @@ li:first-letter {
 }
 
 .container {
-  color: rgb(233, 232, 232);
+  color: rgb(204, 202, 202);
   display: block;
-  padding: 40px 50px;
-  margin: 50px auto 5px;
+  padding: 40px 50px 50px;
+  margin: 50px auto 7px;
   max-width: 75%;
   border: 10px solid rgb(255, 255, 255);
   border-radius: 90px;
@@ -108,9 +113,10 @@ a {
 }
 
 #forecast {
-  padding-top: 20px;
-  padding-right: 10px;
-  padding-left: 10px;
+  padding: 25px 0px 15px;
+
+  border: 2px solid white;
+  border-radius: 45px;
 }
 
 #openSource {
