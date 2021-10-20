@@ -49,7 +49,14 @@ function formatDate(timestamp) {
   return `${day}, ${month} ${dayNumber} | ${time}`;
 }
 
-//Display weather conditions
+//Display 5-day forecast temperatures
+function getForecast(coordinates) {
+  let apiKey = "85bbd3d16a2dfe0ecf253c7ae1e8fe03";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=imperial`;
+  axios.get(apiUrl).then(displayForecast);
+}
+
+//Display current weather conditions
 function displayTemperature(response) {
   //it's 'response' b/c the app gets a response from the API.
 
@@ -89,6 +96,9 @@ function displayTemperature(response) {
     `media/weather icons/${response.data.weather[0].icon}.svg`
   );
   iconElement.setAttribute("alt", response.data.weather[0].description);
+
+  //Coordinates of the searched city
+  getForecast(response.data.coord);
 
   //Animated background
   let animatedBackground = document.querySelector("body");
@@ -182,7 +192,8 @@ let fahrenheitLink = document.querySelector("#fahrenheit-link");
 fahrenheitLink.addEventListener("click", showFahrenheitTemp);
 
 //Forecast
-function displayForecast() {
+function displayForecast(response) {
+  console.log(response.data.daily);
   let forecastElement = document.querySelector("#forecast");
   let forecastHTML = `<div class="row">`;
   let days = ["Mon", "Tue", "Wed", "Thr", "Fri"];
@@ -210,5 +221,3 @@ function displayForecast() {
 }
 
 search("Washington"); //Default city when page loads
-
-displayForecast();
