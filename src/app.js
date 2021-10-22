@@ -161,63 +161,6 @@ function getCurrentLocation(event) {
 let currentLocation = document.querySelector(".current-button");
 currentLocation.addEventListener("click", getCurrentLocation);
 
-//Conversion of current temperature
-//
-//Convert to Celsius
-function showCelsiusTemp(event) {
-  event.preventDefault();
-  let temperatureElement = document.querySelector("#temperature");
-  //remove the active class from the fahrenheit link
-  fahrenheitLink.classList.remove("active");
-  celsiusLink.classList.add("active");
-  let celsiusTemperature = (fahrenheitTemperature - 32) * (5 / 9);
-  temperatureElement.innerHTML = Math.round(celsiusTemperature);
-
-  //need to convert to metric units; wrong values
-  //let highTemp = document.querySelector("#today-high-temp");
-  //highTemp.innerHTML = Math.round(celsiusTemperature);
-
-  //let lowTemp = document.querySelector("#today-low-temp");
-  //lowTemp.innerHTML = Math.round(celsiusTemperature);
-
-  //let feelsLike = document.querySelector("#feels-like");
-  //feelsLike.innerHTML = Math.round(celsiusTemperature);
-
-  //let wind = document.querySelector("#wind");
-  //wind.innerHTML = Math.round(celsiusTemperature * 3.6);
-}
-
-//Convert to Fahrenheit
-function showFahrenheitTemp(event) {
-  event.preventDefault();
-  let temperatureElement = document.querySelector("#temperature");
-  //remove the active class from the celsius link
-  celsiusLink.classList.remove("active");
-  fahrenheitLink.classList.add("active");
-  temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
-
-  //Original units are imperial; wrong values
-  //let highTemp = document.querySelector("#today-high-temp");
-  //highTemp.innerHTML = Math.round(fahrenheitTemperature);
-
-  //let lowTemp = document.querySelector("#today-low-temp");
-  //lowTemp.innerHTML = Math.round(fahrenheitTemperature);
-
-  //let feelsLike = document.querySelector("#feels-like");
-  //feelsLike.innerHTML = Math.round(fahrenheitTemperature);
-
-  //let wind = document.querySelector("#wind");
-  //wind.innerHTML = Math.round(fahrenheitTemperature);
-}
-
-let fahrenheitTemperature = null; // "fah...ture" is a global variable.
-
-let celsiusLink = document.querySelector("#celsius-link");
-celsiusLink.addEventListener("click", showCelsiusTemp);
-
-let fahrenheitLink = document.querySelector("#fahrenheit-link");
-fahrenheitLink.addEventListener("click", showFahrenheitTemp);
-
 //Forecast
 function displayForecast(response) {
   let forecast = response.data.daily;

@@ -29,6 +29,19 @@ li {
 li:first-letter {
   text-transform: capitalize;
 }
+
+.container {
+  color: rgb(223, 217, 217);
+  background: rgba(0, 0, 0, 0.178);
+  display: block;
+  padding: 40px;
+  margin: 50px auto 7px;
+  max-width: 700px;
+  min-width: 700px;
+  border: 10px solid rgb(255, 255, 255);
+  border-radius: 90px;
+}
+
 .weather-app {
   max-width: 600px;
   margin: 20px 20px;
@@ -38,21 +51,13 @@ li:first-letter {
   margin-bottom: 20px;
 }
 
-.container {
-  color: rgb(223, 217, 217);
-  background: rgba(0, 0, 0, 0.178);
-  display: block;
-  padding: 40px 50px 50px;
-  margin: 50px auto 7px;
-  max-width: 75%;
-  border: 10px solid rgb(255, 255, 255);
-  border-radius: 90px;
-}
 #city-input {
   background: transparent;
   border: 4px solid white;
   border-radius: 90px;
   color: white;
+  width: 340px;
+  margin-right: -20px;
 }
 
 .form-control::placeholder {
@@ -119,12 +124,12 @@ a {
 }
 
 .weather-forecast {
-  padding: 25px 0px 15px;
+  padding: 25px 0px 5px;
 }
 .forecast-day {
   border: 2px solid white;
   border-radius: 45px;
-  padding: 20px 5px 5px;
+  padding: 20px 10px 0;
   color: white;
 }
 

@@ -18,7 +18,7 @@
       <div class="weather-app">
         <form id="search-form" class="mb-3">
           <div class="row">
-            <div class="col-9">
+            <div class="col-auto">
               <input
                 type="search"
                 placeholder="Type a city ... "
@@ -27,15 +27,38 @@
                 autocomplete="off"
               />
             </div>
-            <div class="col-3">
-              <input type="submit" value="search" class="search-button" />
+            <div class="col-auto">
+              <button type="submit" value="search" class="search-button">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  fill="currentColor"
+                  class="bi bi-search mb-1"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"
+                  />
+                </svg>
+              </button>
               <button class="current-button">
-                <img
-                  src="media/gps1.svg"
-                  alt="current location"
-                  class="filter-white"
-                />
-                <!-- The GPS image doesn't show up -->
+                Current
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  fill="currentColor"
+                  class="bi bi-geo-alt mb-1"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z"
+                  />
+                  <path
+                    d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
+                  />
+                </svg>
               </button>
             </div>
           </div>
@@ -48,34 +71,30 @@
           </ul>
         </div>
         <div class="row">
-          <div class="col-8">
+          <div class="col-auto">
             <div class="d-flex current-weather-icon">
               <img src="" alt="" class="float-left filter-white" id="icon" />
               <div class="float-left">
-                <strong id="temperature"></strong
-                ><small>
-                  <a href="#" id="fahrenheit-link" class="active">˚F</a> |
-                  <a href="#" id="celsius-link">˚C</a>
-                </small>
+                <strong id="temperature"></strong><small> ˚F </small>
               </div>
             </div>
           </div>
-          <div class="col-4 conditions">
+          <div class="col-auto conditions">
             <ul>
               <li>
                 High: <span id="today-high-temp"></span>˚F | Low:
                 <span id="today-low-temp"></span>˚F
               </li>
               <li>Feels like: <span id="feels-like"></span>˚F</li>
-              <!-- <li>Precipitation: 20%</li> *Precipitation doesn't appear unless it's raining-->
               <li>Humidity: <span id="humidity"></span>%</li>
               <li>Wind: <span id="wind"></span> MPH</li>
             </ul>
           </div>
         </div>
+        <div class="weather-forecast forecast-weekday" id="forecast"></div>
       </div>
-      <div class="weather-forecast forecast-weekday" id="forecast"></div>
     </div>
+
     <small class="openSource">
       <a
         href="https://github.com/sbot19/Vanilla-weather-app"
