@@ -49,6 +49,39 @@ function formatDate(timestamp) {
   return `${day}, ${month} ${dayNumber} | ${time}`;
 }
 
+//Format Forecast date
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["SUN", "MON", "TUE", "WED", "THR", "FRI", "SAT"];
+  return days[day];
+}
+function formatMonth(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let month = date.getMonth();
+  let months = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+  return months[month];
+}
+
+function formatDayNumber(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDate();
+  return day;
+}
+
 //Display 5-day forecast temperatures
 function getForecast(coordinates) {
   let apiKey = "85bbd3d16a2dfe0ecf253c7ae1e8fe03";
@@ -63,27 +96,21 @@ function displayTemperature(response) {
   fahrenheitTemperature = response.data.main.temp;
 
   let temperatureElement = document.querySelector("#temperature");
-  temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
-
   let cityElement = document.querySelector("#city");
-  cityElement.innerHTML = response.data.name;
-
   let descriptionElement = document.querySelector("#description");
-  descriptionElement.innerHTML = response.data.weather[0].description;
-
   let todayHighTempElement = document.querySelector("#today-high-temp");
-  todayHighTempElement.innerHTML = Math.round(response.data.main.temp_max);
-
   let todayLowTempElement = document.querySelector("#today-low-temp");
-  todayLowTempElement.innerHTML = Math.round(response.data.main.temp_min);
-
   let feelsLikeElement = document.querySelector("#feels-like");
-  feelsLikeElement.innerHTML = Math.round(response.data.main.feels_like);
-
   let humidityElement = document.querySelector("#humidity");
-  humidityElement.innerHTML = Math.round(response.data.main.humidity);
-
   let windElement = document.querySelector("#wind");
+
+  temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
+  cityElement.innerHTML = response.data.name;
+  descriptionElement.innerHTML = response.data.weather[0].description;
+  todayHighTempElement.innerHTML = Math.round(response.data.main.temp_max);
+  todayLowTempElement.innerHTML = Math.round(response.data.main.temp_min);
+  feelsLikeElement.innerHTML = Math.round(response.data.main.feels_like);
+  humidityElement.innerHTML = Math.round(response.data.main.humidity);
   windElement.innerHTML = Math.round(response.data.wind.speed);
 
   let dateElement = document.querySelector("#date");
@@ -193,26 +220,39 @@ fahrenheitLink.addEventListener("click", showFahrenheitTemp);
 
 //Forecast
 function displayForecast(response) {
-  console.log(response.data.daily);
+  let forecast = response.data.daily;
   let forecastElement = document.querySelector("#forecast");
+
   let forecastHTML = `<div class="row">`;
-  let days = ["Mon", "Tue", "Wed", "Thr", "Fri"];
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `
+  forecast.forEach(function (forecastDay, index) {
+    if (index > 0 && index < 6) {
+      forecastHTML =
+        forecastHTML +
+        `
           <div class="col">
             <div class="text-center forecast-day">
-              <h5 class="dayOfWeek"><strong>${day}</strong></h5>
-              <h6 class="forcast-day-number">Date</h6>
-              <img src="" alt="" width="36" />
+              <h5><strong>${formatDay(forecastDay.dt)}</strong></h5>
+              <h6> ${formatMonth(forecastDay.dt)} ${formatDayNumber(
+          forecastDay.dt
+        )}
+        </h6>
+              <img src="media/weather icons/${
+                forecastDay.weather[0].icon
+              }.svg" alt="${
+          forecastDay.weather[0].description
+        }" width="60" class="filter-white"/>
               <div class="forecast-temperatures">
-                <h6 class="forecast-high-temp">day°F</h6>
-                <p class="forecast-low-temp">night°F</p>
+                <h6 class="forecast-high-temp">${Math.round(
+                  forecastDay.temp.max
+                )}°F</h6>
+                <p class="forecast-low-temp">${Math.round(
+                  forecastDay.temp.min
+                )}°F</p>
               </div>
             </div>
           </div>
   `;
+    }
   });
 
   forecastHTML = forecastHTML + `</div>`;
