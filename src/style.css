@@ -4,14 +4,15 @@ body {
   position: relative;
   background-size: cover;
   background-attachment: fixed;
-  color: white;
+  font-family: "Quicksand", sans-serif;
 }
 
 h1 {
   display: block;
-  font-size: 36px;
+  font-size: 40px;
   line-height: 28px;
-  margin-bottom: 15px;
+  margin-top: 20px;
+  margin-bottom: 10px;
   color: white;
 }
 ul {
@@ -43,7 +44,7 @@ li:first-letter {
 }
 
 .weather-app {
-  max-width: 600px;
+  max-width: 650px;
   margin: 20px 20px;
   padding: 0;
 }
@@ -76,9 +77,11 @@ li:first-letter {
 }
 
 .current-weather-icon img {
+  position: relative;
+  top: 5px;
   margin-right: 20px;
-  height: 160px;
-  width: 160px;
+  height: 165px;
+  width: 165px;
 }
 
 .filter-white {
@@ -98,9 +101,10 @@ li:first-letter {
 .current-weather-icon small {
   position: relative;
   font-size: 16px;
-  top: -8px;
-  /* This changes the appearance of ˚F and ˚C. */
-  /* The vertical position of F/C can be changed with 'top'. */
+  top: -1px;
+  color: white;
+  /* This changes the appearance of ˚F. */
+  /* The vertical position of F can be changed with 'top'. */
 }
 
 .current-weather-icon .active {
@@ -121,6 +125,7 @@ a {
 .conditions {
   position: relative;
   top: 40px;
+  left: 10px;
 }
 
 .weather-forecast {
@@ -129,11 +134,12 @@ a {
 .forecast-day {
   border: 2px solid white;
   border-radius: 45px;
-  padding: 20px 10px 0;
+  padding: 20px 10px 3px;
   color: white;
 }
 
 .forecast-high-temp {
+  margin-top: 5px;
   color: rgb(250, 206, 189);
   font-weight: bolder;
 }
@@ -148,6 +154,8 @@ a {
   text-align: center;
   display: block;
   color: rgb(202, 255, 189);
+  margin-bottom: 30px;
+  font-family: "Ubuntu", sans-serif;
 }
 
 #openSource {
